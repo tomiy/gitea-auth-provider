@@ -3,6 +3,7 @@
   "displayName": "gitea-auth-provider",
   "description": "",
   "version": "0.0.1",
+  "publisher": "tomiy",
   "engines": {
     "vscode": "^1.82.0"
   },
