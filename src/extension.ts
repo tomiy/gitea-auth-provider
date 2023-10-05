@@ -27,12 +27,19 @@ export function activate(context: vscode.ExtensionContext) {
 		const session = await vscode.authentication.getSession(GiteaAuthenticationProvider.id, [], { createIfNone: true });
 
 		try {
-			// Prompt for the PAT.
-			const giteaURL = await vscode.window.showInputBox({
-				ignoreFocusOut: true,
-				placeHolder: 'Gitea base URL',
-				prompt: 'Enter the Gitea URL to test api connection.'
-			});
+			let giteaConf = vscode.workspace.getConfiguration('gitea');
+
+			let giteaURL = giteaConf.get('url');
+
+			if(!giteaURL) {
+				giteaURL = await vscode.window.showInputBox({
+					ignoreFocusOut: true,
+					placeHolder: 'Gitea base URL',
+					prompt: 'Enter the Gitea URL to test api connection.'
+				});
+
+				giteaConf.update('url', giteaURL);
+			}
 
 			// Note: this example doesn't do any validation of the token beyond making sure it's not empty.
 			if (!giteaURL) {

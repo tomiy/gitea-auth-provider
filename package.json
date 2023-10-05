@@ -24,7 +24,18 @@
         "id": "giteapat",
         "label": "Gitea PAT"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Gitea",
+      "properties": {
+        "gitea.url": {
+          "scope": "window",
+          "type": "string",
+          "description": "Base URL of the Gitea server."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
